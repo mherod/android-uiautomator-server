@@ -29,7 +29,7 @@ import android.view.Menu
 import android.view.MenuItem
 
 
-public class MainActivity : Activity() {
+class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

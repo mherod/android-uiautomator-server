@@ -30,7 +30,7 @@ import com.googlecode.jsonrpc4j.JsonRpcErrors;
 import com.googlecode.jsonrpc4j.JsonRpcError;
 
 public interface AutomatorService {
-    final static int ERROR_CODE_BASE = -32000;
+    int ERROR_CODE_BASE = -32000;
     /**
      * It's to test if the service is alive.
      * @return 'pong'

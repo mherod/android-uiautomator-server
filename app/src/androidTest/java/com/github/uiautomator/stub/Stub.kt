@@ -33,9 +33,9 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import android.support.test.filters.LargeTest;
+import android.support.test.filters.LargeTest
 //import android.support.test.filters.FlakyTest;
-import android.test.FlakyTest;
+import android.test.FlakyTest
 
 /**
  * Use JUnit test to start the uiautomator jsonrpc server.
@@ -43,19 +43,19 @@ import android.test.FlakyTest;
  */
 @RunWith(AndroidJUnit4::class)
 @SdkSuppress(minSdkVersion = 18)
-public class Stub {
+class Stub {
     val PORT = 9008
     val server: AutomatorHttpServer by lazy { AutomatorHttpServer(PORT) }
 
     @Before
-    public fun setUp() {
+    fun setUp() {
         server.route("/jsonrpc/0", JsonRpcServer(ObjectMapper(), AutomatorServiceImpl(), AutomatorService::class.java))
         server.start()
         UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).wakeUp()
     }
 
     @After
-    public fun tearDown() {
+    fun tearDown() {
         server.stop()
     }
 
@@ -63,8 +63,8 @@ public class Stub {
     @LargeTest
     @FlakyTest(tolerance = 3)
     @Throws(InterruptedException::class)
-    public fun testUIAutomatorStub() {
-        while (server.isAlive())
+    fun testUIAutomatorStub() {
+        while (server.isAlive)
             Thread.sleep(100)
     }
 

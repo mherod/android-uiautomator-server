@@ -298,11 +298,8 @@ public class Selector {
 		if((s.getMask() & Selector.MASK_INDEX)>0||(s.getMask() & Selector.MASK_INSTANCE)>0){
 			return true;
 		}
-		if(s.toBySelector()==null){
-			return true;
-		}
-		return false;
-	}
+        return s.toBySelector() == null;
+    }
 
 	public UiObject2 toUiObject2() {
 		if (checkBySelectorNull(this)) return null;
