@@ -41,13 +41,15 @@ import fi.iki.elonen.NanoHTTPD;
 
 public class AutomatorHttpServer extends NanoHTTPD {
 
+    private Map<String, JsonRpcServer> router = new HashMap<String, JsonRpcServer>();
+
     public AutomatorHttpServer(int port) {
+
         super(port);
     }
 
-    private Map<String, JsonRpcServer> router = new HashMap<String, JsonRpcServer>();
-
     public void route(String uri, JsonRpcServer rpc) {
+
         router.put(uri, rpc);
     }
 
@@ -55,6 +57,7 @@ public class AutomatorHttpServer extends NanoHTTPD {
     public Response serve(String uri, Method method,
                           Map<String, String> headers, Map<String, String> params,
                           Map<String, String> files) {
+
         Log.d(String.format("URI: %s, Method: %s, Header: %s, params, %s, files: %s", uri, method, headers, params, files));
 
         if ("/stop".equals(uri)) {
@@ -84,6 +87,7 @@ public class AutomatorHttpServer extends NanoHTTPD {
                 return new Response(Response.Status.INTERNAL_ERROR, MIME_PLAINTEXT, "Internal Server Error!!!");
             }
         } else if (router.containsKey(uri)) {
+
             JsonRpcServer jsonRpcServer = router.get(uri);
             ByteArrayInputStream is = null;
             if (params.get("NanoHttpd.QUERY_STRING") != null)

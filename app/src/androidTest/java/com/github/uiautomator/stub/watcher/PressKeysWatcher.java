@@ -25,9 +25,10 @@ package com.github.uiautomator.stub.watcher;
 
 import android.os.RemoteException;
 import android.support.test.InstrumentationRegistry;
-import android.view.KeyEvent;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiSelector;
+import android.view.KeyEvent;
+
 import com.github.uiautomator.stub.Log;
 
 /**
@@ -37,11 +38,14 @@ import com.github.uiautomator.stub.Log;
  * Time: 4:24 PM
  * To change this template use File | Settings | File Templates.
  */
-public class PressKeysWatcher extends SelectorWatcher{
+public class PressKeysWatcher extends SelectorWatcher {
+
     private String[] keys = new String[]{};
+
     private UiDevice device = null;
 
     public PressKeysWatcher(UiSelector[] conditions, String[] keys) {
+
         super(conditions);
         this.keys = keys;
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
@@ -49,8 +53,9 @@ public class PressKeysWatcher extends SelectorWatcher{
 
     @Override
     public void action() {
+
         Log.d("PressKeysWatcher triggered!");
-        for (String key: keys) {
+        for (String key : keys) {
             key = key.toLowerCase();
             if ("home".equals(key))
                 device.pressHome();

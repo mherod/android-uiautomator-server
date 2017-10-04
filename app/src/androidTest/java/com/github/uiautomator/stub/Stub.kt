@@ -24,18 +24,17 @@
 package com.github.uiautomator.stub
 
 import android.support.test.InstrumentationRegistry
+import android.support.test.filters.LargeTest
 import android.support.test.filters.SdkSuppress
 import android.support.test.runner.AndroidJUnit4
 import android.support.test.uiautomator.UiDevice
+import android.test.FlakyTest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.googlecode.jsonrpc4j.JsonRpcServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import android.support.test.filters.LargeTest
-//import android.support.test.filters.FlakyTest;
-import android.test.FlakyTest
 
 /**
  * Use JUnit test to start the uiautomator jsonrpc server.
@@ -44,19 +43,19 @@ import android.test.FlakyTest
 @RunWith(AndroidJUnit4::class)
 @SdkSuppress(minSdkVersion = 18)
 class Stub {
-    val PORT = 9008
-    val server: AutomatorHttpServer by lazy { AutomatorHttpServer(PORT) }
 
     @Before
     fun setUp() {
-        server.route("/jsonrpc/0", JsonRpcServer(ObjectMapper(), AutomatorServiceImpl(), AutomatorService::class.java))
-        server.start()
-        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).wakeUp()
+        Companion.server.route("/jsonrpc/0", JsonRpcServer(ObjectMapper(), AutomatorServiceImpl(), AutomatorService::class.java))
+        Companion.server.start()
+
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        UiDevice.getInstance(instrumentation).wakeUp()
     }
 
     @After
     fun tearDown() {
-        server.stop()
+        Companion.server.stop()
     }
 
     @Test
@@ -64,8 +63,13 @@ class Stub {
     @FlakyTest(tolerance = 3)
     @Throws(InterruptedException::class)
     fun testUIAutomatorStub() {
-        while (server.isAlive)
+        while (Companion.server.isAlive)
             Thread.sleep(100)
+    }
+
+    companion object {
+        private const val PORT = 9008
+        val server: AutomatorHttpServer by lazy { AutomatorHttpServer(Companion.PORT) }
     }
 
 }

@@ -42,12 +42,14 @@ public class ClickUiObjectWatcher extends SelectorWatcher {
     private UiSelector target = null;
 
     public ClickUiObjectWatcher(UiSelector[] conditions, UiSelector target) {
+
         super(conditions);
         this.target = target;
     }
 
     @Override
     public void action() {
+
         Log.d("ClickUiObjectWatcher triggered!");
         if (target != null) {
             try {

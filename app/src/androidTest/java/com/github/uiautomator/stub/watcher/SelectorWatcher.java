@@ -35,14 +35,17 @@ import android.support.test.uiautomator.UiWatcher;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class SelectorWatcher implements UiWatcher {
+
     private UiSelector[] conditions = null;
 
-    public SelectorWatcher(UiSelector[] conditions) {
+    SelectorWatcher(UiSelector[] conditions) {
+
         this.conditions = conditions;
     }
 
     @Override
     public boolean checkForCondition() {
+
         for (UiSelector s : conditions) {
             UiObject obj = new UiObject(s);
             if (!obj.exists()) return false;

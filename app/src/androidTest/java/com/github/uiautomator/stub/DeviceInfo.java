@@ -28,34 +28,40 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.uiautomator.UiDevice;
 
 public class DeviceInfo {
-	private String _currentPackageName;
-	private int _displayWidth;
-	private int _displayHeight;
-	private int _displayRotation;
-	private int _displaySizeDpX;
-	private int _displaySizeDpY;
-	private String _productName;
-	private boolean _naturalOrientation;
+
+    private String _currentPackageName;
+
+    private int _displayWidth;
+
+    private int _displayHeight;
+
+    private int _displayRotation;
+
+    private int _displaySizeDpX;
+
+    private int _displaySizeDpY;
+
+    private String _productName;
+
+    private boolean _naturalOrientation;
+
     private boolean _screenOn;
-	
-	private int _sdkInt;
 
-    public static DeviceInfo getDeviceInfo() {
-        return new DeviceInfo();
-    }
+    private int _sdkInt;
 
-	private DeviceInfo() {
-		this._sdkInt = android.os.Build.VERSION.SDK_INT;
+    private DeviceInfo() {
 
-		UiDevice ud = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-		this._currentPackageName = ud.getCurrentPackageName();
-		this._displayWidth = ud.getDisplayWidth();
-		this._displayHeight = ud.getDisplayHeight();
-		this._displayRotation = ud.getDisplayRotation();
-		this._productName = ud.getProductName();
-		this._naturalOrientation = ud.isNaturalOrientation();
-		this._displaySizeDpX = ud.getDisplaySizeDp().x;
-		this._displaySizeDpY = ud.getDisplaySizeDp().y;
+        this._sdkInt = android.os.Build.VERSION.SDK_INT;
+
+        UiDevice ud = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        this._currentPackageName = ud.getCurrentPackageName();
+        this._displayWidth = ud.getDisplayWidth();
+        this._displayHeight = ud.getDisplayHeight();
+        this._displayRotation = ud.getDisplayRotation();
+        this._productName = ud.getProductName();
+        this._naturalOrientation = ud.isNaturalOrientation();
+        this._displaySizeDpX = ud.getDisplaySizeDp().x;
+        this._displaySizeDpY = ud.getDisplaySizeDp().y;
         try {
             this._screenOn = ud.isScreenOn();
         } catch (RemoteException e) {
@@ -63,84 +69,109 @@ public class DeviceInfo {
             Log.e(e.getMessage());
         }
     }
-	
-	public String getCurrentPackageName() {
-		return _currentPackageName;
-	}
 
-	public void setCurrentPackageName(String currentPackageName) {
-		this._currentPackageName = currentPackageName;
-	}
+    public static DeviceInfo getDeviceInfo() {
 
-	public int getDisplayWidth() {
-		return _displayWidth;
-	}
+        return new DeviceInfo();
+    }
 
-	public void setDisplayWidth(int displayWidth) {
-		this._displayWidth = displayWidth;
-	}
+    public String getCurrentPackageName() {
 
-	public int getDisplayHeight() {
-		return _displayHeight;
-	}
+        return _currentPackageName;
+    }
 
-	public void setDisplayHeight(int displayHeight) {
-		this._displayHeight = displayHeight;
-	}
+    public void setCurrentPackageName(String currentPackageName) {
 
-	public int getDisplayRotation() {
-		return _displayRotation;
-	}
+        this._currentPackageName = currentPackageName;
+    }
 
-	public void setDisplayRotation(int displayRotation) {
-		this._displayRotation = displayRotation;
-	}
+    public int getDisplayHeight() {
 
-	public int getDisplaySizeDpX() {
-		return _displaySizeDpX;
-	}
+        return _displayHeight;
+    }
 
-	public void setDisplaySizeDpX(int displaySizeDpX) {
-		this._displaySizeDpX = displaySizeDpX;
-	}
+    public void setDisplayHeight(int displayHeight) {
 
-	public int getDisplaySizeDpY() {
-		return _displaySizeDpY;
-	}
+        this._displayHeight = displayHeight;
+    }
 
-	public void setDisplaySizeDpY(int displaySizeDpY) {
-		this._displaySizeDpY = displaySizeDpY;
-	}
+    public int getDisplayRotation() {
 
-	public String getProductName() {
-		return _productName;
-	}
+        return _displayRotation;
+    }
 
-	public void setProductName(String productName) {
-		this._productName = productName;
-	}
+    public void setDisplayRotation(int displayRotation) {
 
-	public boolean isNaturalOrientation() {
-		return _naturalOrientation;
-	}
+        this._displayRotation = displayRotation;
+    }
 
-	public void setNaturalOrientation(boolean naturalOrientation) {
-		this._naturalOrientation = naturalOrientation;
-	}
+    public int getDisplaySizeDpX() {
 
-	public int getSdkInt() {
-		return _sdkInt;
-	}
+        return _displaySizeDpX;
+    }
 
-	public void setSdkInt(int sdkInt) {
-		this._sdkInt = sdkInt;
-	}
+    public void setDisplaySizeDpX(int displaySizeDpX) {
+
+        this._displaySizeDpX = displaySizeDpX;
+    }
+
+    public int getDisplaySizeDpY() {
+
+        return _displaySizeDpY;
+    }
+
+    public void setDisplaySizeDpY(int displaySizeDpY) {
+
+        this._displaySizeDpY = displaySizeDpY;
+    }
+
+    public int getDisplayWidth() {
+
+        return _displayWidth;
+    }
+
+    public void setDisplayWidth(int displayWidth) {
+
+        this._displayWidth = displayWidth;
+    }
+
+    public String getProductName() {
+
+        return _productName;
+    }
+
+    public void setProductName(String productName) {
+
+        this._productName = productName;
+    }
 
     public boolean getScreenOn() {
+
         return _screenOn;
     }
 
     public void setScreenOn(boolean screenOn) {
+
         this._screenOn = screenOn;
+    }
+
+    public int getSdkInt() {
+
+        return _sdkInt;
+    }
+
+    public void setSdkInt(int sdkInt) {
+
+        this._sdkInt = sdkInt;
+    }
+
+    public boolean isNaturalOrientation() {
+
+        return _naturalOrientation;
+    }
+
+    public void setNaturalOrientation(boolean naturalOrientation) {
+
+        this._naturalOrientation = naturalOrientation;
     }
 }
